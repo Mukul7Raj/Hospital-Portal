@@ -1,0 +1,39 @@
+<h1>Patient Details</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @patient.name %>
+</p>
+
+<p>
+  <strong>Date of Birth:</strong>
+  <%= @patient.date_of_birth %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @patient.gender %>
+</p>
+
+<p>
+  <strong>Contact Number:</strong>
+  <%= @patient.contact_number %>
+</p>
+
+<h2>Appointments</h2>
+
+<% if @patient.appointments.any? %>
+  <ul>
+    <% @patient.appointments.each do |appointment| %>
+      <li>
+        <strong>Date:</strong> <%= appointment.scheduled_at.strftime("%B %d, %Y %I:%M %p") %> - 
+        <strong>Status:</strong> <%= appointment.status %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No appointments scheduled.</p>
+<% end %>
+
+<%= link_to 'Edit Patient', edit_patient_path(@patient) %> |
+<%= link_to 'Back to Patients', patients_path %>
